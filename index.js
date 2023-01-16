@@ -2,10 +2,17 @@ const express = require("express");
 const app = express();
 const cors=require("cors");
 const pool=require("./db");
+const bodyParser = require("body-parser");
 // const pool2=require("./db");
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.get("/", async (req, res) => {
     return res.status(200).json({
@@ -101,7 +108,7 @@ app.get("/select/:bdgp",async(req,res)=>{
 })
 
 app.get("/select",async(req,res)=>{
-    // console.log("hiii");
+    console.log("hiii");
     try{
         const result=await pool.query(
             "select * from donors"
