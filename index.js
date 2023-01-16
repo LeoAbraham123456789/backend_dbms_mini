@@ -7,7 +7,7 @@ const pool=require("./db");
 app.use(cors());
 app.use(express.json());
 
-router.get("/", async (req, res) => {
+app.get("/", async (req, res) => {
     return res.status(200).json({
       title: "Express Testing",
       message: "The app is working properly!",
